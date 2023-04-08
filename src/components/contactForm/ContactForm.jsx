@@ -1,4 +1,13 @@
 import React, { Component } from 'react';
+import { SlUserFollow } from 'react-icons/sl';
+import PropTypes from 'prop-types';
+
+import {
+  Form,
+  FormContactLable,
+  FormContactInput,
+  FormContactBtn,
+} from './ContactForm.styled';
 
 export default class ContactForm extends Component {
   state = {
@@ -27,10 +36,10 @@ export default class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <Form onSubmit={this.handleSubmit}>
+        <FormContactLable>
           Name
-          <input
+          <FormContactInput
             type="text"
             name="name"
             value={this.state.name}
@@ -39,10 +48,10 @@ export default class ContactForm extends Component {
             required
             onChange={this.handleInputChange}
           />
-        </label>
-        <label>
+        </FormContactLable>
+        <FormContactLable>
           Number
-          <input
+          <FormContactInput
             type="tel"
             name="number"
             value={this.state.number}
@@ -51,9 +60,16 @@ export default class ContactForm extends Component {
             required
             onChange={this.handleInputChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </FormContactLable>
+        <FormContactBtn type="submit">
+          <SlUserFollow fontSize="large" />
+          Add contact
+        </FormContactBtn>
+      </Form>
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
