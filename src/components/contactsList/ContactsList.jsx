@@ -13,16 +13,13 @@ import {
 } from './ContactList.styled';
 
 export default class ContactsList extends Component {
-  deleteContact = event => {
-    this.props.deleteContact(event.currentTarget.parentElement.id);
-  };
-
   render() {
+    const { deleteContact } = this.props;
     return (
       <ContactList>
         {this.props.contacts.map(({ id, name, number }) => {
           return (
-            <ContactItem key={id} id={id}>
+            <ContactItem key={id}>
               <ContactCard>
                 <ContactInfo>
                   <BsPersonCircle />
@@ -34,7 +31,7 @@ export default class ContactsList extends Component {
                 </ContactInfo>
               </ContactCard>
 
-              <DeleteBtn onClick={this.deleteContact}>
+              <DeleteBtn onClick={() => deleteContact(id)}>
                 <RiDeleteBin3Line fill="currentColor" size="1.2rem" />
                 Delete
               </DeleteBtn>
